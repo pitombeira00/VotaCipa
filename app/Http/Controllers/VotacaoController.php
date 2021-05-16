@@ -45,12 +45,27 @@ class VotacaoController extends Controller
 
         return view('resultados.home', compact('chartjs','id'));
     }
+
+    /**
+     * Listagem dos votos do funcionário
+     *
+     * @param Votacao $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function votacaoPorFuncionario(Votacao $id){
+
+        return view('resultados.listagem', compact('id'));
+    }
+
     /**
      * Função da submissão do formulário da votação
      *
      * @param Request $request
      */
     public function voto(VotacaoRequest $request){
+
+        $funcionario = Funcionarios::where('matricula',$request->matricula)->first();
+        $votacao = Votacao::where('titulo_slug',$request->votacao)->first();
 
         //Validações
         $validacao = $this->validarFormularioVotacao($request);
@@ -61,19 +76,26 @@ class VotacaoController extends Controller
 
         }
 
-        $funcionario = Funcionarios::where('matricula',$request->matricula)->first();
-        $votacao = Votacao::where('titulo_slug',$request->votacao)->first();
+        if( $votacao->votacaoAtiva()){
 
-        Votos::create([
-            'candidato_id' => $request->candidato,
-            'funcionario_id' => $funcionario->id,
-            'votacao_id' => $votacao->id,
-        ]);
+            Votos::create([
+                'candidato_id' => $request->candidato,
+                'funcionario_id' => $funcionario->id,
+                'votacao_id' => $votacao->id,
+            ]);
 
 
-        return view('painel');
+            return view('painel');
+
+        }else{
+
+            return view('encerrada',compact('votacao'));
+
+        }
+
 
     }
+
     /**
      * Site da Votação
      *
@@ -83,14 +105,23 @@ class VotacaoController extends Controller
 
 
         $votacao = Votacao::where('titulo_slug',$name)->first();
-
+        $dataAtual = date('Y-m-s H:m:s');
 
         if(empty($name) or empty($votacao)){
             abort(404);
         }
 
+        if( $votacao->votacaoAtiva()){
 
-        return view('votar',compact('votacao'));
+            return view('votar',compact('votacao'));
+
+        }else{
+
+            return view('encerrada',compact('votacao'));
+
+        }
+
+
 
     }
     /**

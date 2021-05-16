@@ -21,4 +21,15 @@ class Votacao extends Model
         return $this->hasMany(Candidatos::Class);
 
     }
+    public function votos(){
+
+        return $this->hasMany(Votos::Class);
+
+    }
+
+    public function votacaoAtiva(){
+        $dataAtual = date('Y-m-d H:s:i');
+
+        return ($dataAtual > $this->inicio && $dataAtual < $this->fim);
+    }
 }

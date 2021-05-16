@@ -25,4 +25,9 @@ class Votos extends Model
     ];
     protected $table = 'votos';
 
+    public function funcionario(){
+
+        return $this->hasOne(Funcionarios::class, 'id', 'funcionario_id');
+    }
+
 }

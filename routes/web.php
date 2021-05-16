@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -32,4 +32,5 @@ Route::group(['middleware'=>['auth']], function() {
     Route::get('Votacao/Candidatos/{id}', 'CandidatosController@indexPorVotacao')->name('candidatos.votacao');
     Route::get('Votacao/Candidatos/Criar/{id}', 'CandidatosController@createPorVotacao')->name('candidatos.incluir');
     Route::get('/Resultados/{id}','VotacaoController@resultadoPorVotacao')->name('resultado');
+    Route::get('/Resultados/Listagem/{id}','VotacaoController@votacaoPorFuncionario')->name('votacao.funcionarios');
 });

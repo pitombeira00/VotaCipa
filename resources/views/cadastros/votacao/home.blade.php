@@ -14,34 +14,33 @@
                     <div class="card-header">{{ __('Votações') }}</div>
 
                     <div class="card-body">
-
-                            <table class="table ">
-                                <thead>
+                        <table class="table ">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Titulo</th>
+                                <th>Inicio</th>
+                                <th>Fim</th>
+                                <th>Ação</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($votacao as $voto)
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Titulo</th>
-                                    <th>Inicio</th>
-                                    <th>Fim</th>
-                                    <th>Ação</th>
+                                    <td>{{$voto->id}}</td>
+                                    <td>{{$voto->titulo}}</td>
+                                    <td>{{ \Carbon\Carbon::parse($voto->inicio )->format('d/m/Y - H:i:s')}}</td>
+                                    <td>{{ \Carbon\Carbon::parse($voto->fim )->format('d/m/Y - H:i:s')}}</td>
+                                    <td>
+                                        <a class="btn btn-success btn-sm" href="{{route('candidatos.votacao',$voto)}}">Candidatos</a>
+                                        <a class="btn btn-info btn-sm" href="{{route('votar',$voto->titulo_slug)}}">Link de Votação</a>
+                                        <a class="btn btn-warning btn-sm" href="{{route('resultado',$voto)}}">Resultado</a>
+                                    </td>
                                 </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($votacao as $voto)
-                                    <tr>
-                                        <td>{{$voto->id}}</td>
-                                        <td>{{$voto->titulo}}</td>
-                                        <td>{{ \Carbon\Carbon::parse($voto->inicio )->format('d/m/Y - H:i:s')}}</td>
-                                        <td>{{ \Carbon\Carbon::parse($voto->fim )->format('d/m/Y - H:i:s')}}</td>
-                                        <td>
-                                            <a class="btn btn-success btn-sm" href="{{route('candidatos.votacao',$voto)}}">Candidatos</a>
-                                            <a class="btn btn-info btn-sm" href="{{route('votar',$voto->titulo_slug)}}">Link de Votação</a>
-                                            <a class="btn btn-warning btn-sm" href="{{route('resultado',$voto)}}">Resultado</a>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                            @endforeach
 
-                                </tbody>
-                            </table>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

@@ -224,13 +224,6 @@ return [
     */
 
     'menu' => [
-        [
-            'text'        => 'Votar',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 1,
-            'label_color' => 'success',
-        ],
         ['header' => 'CADASTROS'],
         [
             'text' => 'Votação',
@@ -241,10 +234,6 @@ return [
             'text' => 'Funcionários',
             'url'  => 'Funcionarios',
             'icon' => 'fas fa-fw fa-user',
-        ], [
-            'text' => 'Resultados',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-poll',
         ],
 
     ],
@@ -320,11 +309,11 @@ return [
             ],
         ],
         'Chartjs' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
                 ],
             ],

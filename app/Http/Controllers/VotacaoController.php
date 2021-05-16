@@ -13,6 +13,38 @@ use Illuminate\Support\Str;
 class VotacaoController extends Controller
 {
 
+
+    /**
+     * Gráfico com o andamento da Votação
+     *
+     * @param Votacao $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function resultadoPorVotacao(Votacao $id){
+
+        $labels = [];
+        foreach ($id->candidatos as $candidato){
+
+            $colorR = mt_rand(0,255);
+            $colorG = mt_rand(0,255);
+            $colorB = mt_rand(0,255);
+
+            array_push($labels,[
+                "label" => $candidato->nome,
+                'backgroundColor' => ['rgba('.$colorR.', '.$colorG.', '.$colorB.', 0.2)', 'rgba(54, 162, 235, 0.2)'],
+                'data' => [$candidato->contagemVotosdoCandidato(),0]
+            ]);
+        }
+        $chartjs = app()->chartjs
+            ->name('barChartTest')
+            ->type('bar')
+            ->size(['width' => 400, 'height' => 200])
+            ->labels(['Votação Cipa 2021'])
+            ->datasets($labels)
+            ->options([]);
+
+        return view('resultados.home', compact('chartjs','id'));
+    }
     /**
      * Função da submissão do formulário da votação
      *
@@ -181,4 +213,5 @@ class VotacaoController extends Controller
         //dd($arrayComErros);
         return $arrayComErros;
     }
+
 }

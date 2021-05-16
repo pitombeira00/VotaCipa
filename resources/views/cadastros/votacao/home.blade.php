@@ -35,7 +35,7 @@
                                         <td>
                                             <a class="btn btn-success btn-sm" href="{{route('candidatos.votacao',$voto)}}">Candidatos</a>
                                             <a class="btn btn-info btn-sm" href="{{route('votar',$voto->titulo_slug)}}">Link de Votação</a>
-                                            <a class="btn btn-warning btn-sm" href="{{route('votar',$voto->titulo_slug)}}">Resultado</a>
+                                            <a class="btn btn-warning btn-sm" href="{{route('resultado',$voto)}}">Resultado</a>
                                         </td>
                                     </tr>
                                 @endforeach

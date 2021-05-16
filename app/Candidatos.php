@@ -20,4 +20,10 @@ class Candidatos extends Model
 
         return $this->belongsTo(Votacao::class);
     }
+
+    public function contagemVotosdoCandidato(){
+
+      return  Votos::where('candidato_id',$this->id)->count();
+
+    }
 }

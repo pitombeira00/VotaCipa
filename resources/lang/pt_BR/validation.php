@@ -133,6 +133,10 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'g-recaptcha-response' => [
+            'required' => 'Por favor, clique em Não sou Robo',
+            'captcha' => 'Captcha error! try again later or contact site admin.',
+        ],
     ],
 
     /*

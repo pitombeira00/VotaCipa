@@ -111,6 +111,7 @@
       <path value="$PROJECT_DIR$/vendor/laravellegends/pt-br-validator" />
       <path value="$PROJECT_DIR$/vendor/lucascudo/laravel-pt-br-localization" />
       <path value="$PROJECT_DIR$/vendor/fx3costa/laravelchartjs" />
+      <path value="$PROJECT_DIR$/vendor/anhskohbo/no-captcha" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

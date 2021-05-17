@@ -27,7 +27,8 @@ class VotacaoRequest extends FormRequest
         return [
             'matricula' => ['required', 'string', new Matricula()],
             'senha' => ['required','string','size:4'],
-            'candidato' => ['required', 'numeric']
+            'candidato' => ['required', 'numeric'],
+            'g-recaptcha-response' => 'required|captcha'
         ];
     }
 }

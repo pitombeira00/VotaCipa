@@ -218,7 +218,6 @@ class VotacaoController extends Controller
         //FUNCIONARIO X SENHA
         //FUNCIONARIO X SE JA VOTOU
         $arrayComErros = [];
-
         $votacao = Votacao::where('titulo_slug',$request->votacao)->first();
 
         //FUNCIONÁRIO NÃO ESTA VINCULADO A VOTACAO
@@ -235,7 +234,7 @@ class VotacaoController extends Controller
 
         }
         //VALIDA SE JA VOTOU
-        if(!Votos::where('funcionario_id',$request->matricula)->where('votacao_id',$votacao->id)->first() && empty($arrayComErros)){
+        if(Votos::where('funcionario_id',$request->matricula)->where('votacao_id',$votacao->id)->first() && empty($arrayComErros)){
 
             array_push($arrayComErros,['FuncionarioXSenha' =>'Matricula com Voto já realizado.']);
 

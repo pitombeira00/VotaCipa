@@ -32,6 +32,7 @@
                                     <td>{{ \Carbon\Carbon::parse($voto->inicio )->format('d/m/Y - H:i:s')}}</td>
                                     <td>{{ \Carbon\Carbon::parse($voto->fim )->format('d/m/Y - H:i:s')}}</td>
                                     <td>
+                                        <a class="btn btn-danger btn-sm" href="{{route('Votacao.edit',$voto)}}">Editar</a>
                                         <a class="btn btn-success btn-sm" href="{{route('candidatos.votacao',$voto)}}">Candidatos</a>
                                         <a class="btn btn-info btn-sm" href="{{route('votar',$voto->titulo_slug)}}">Link de Votação</a>
                                         <a class="btn btn-warning btn-sm" href="{{route('resultado',$voto)}}">Resultado</a>

@@ -32,4 +32,10 @@ class Votacao extends Model
 
         return ($dataAtual > $this->inicio && $dataAtual < $this->fim);
     }
+
+    public function naoIniciou(){
+        $dataAtual = date('Y-m-d H:s:i');
+
+        return ($dataAtual < $this->inicio );
+    }
 }

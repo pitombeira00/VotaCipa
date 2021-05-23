@@ -16,4 +16,8 @@ class Funcionarios extends Model
     ];
     protected $table = 'funcionarios';
 
+    public function votacao(){
+
+        return $this->belongsTo(Votacao::class);
+    }
 }

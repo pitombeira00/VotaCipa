@@ -117,7 +117,16 @@ class VotacaoController extends Controller
 
         }else{
 
-            return view('encerrada',compact('votacao'));
+            if($votacao->naoIniciou()){
+
+                return view('naoiniciou',compact('votacao'));
+
+            }else{
+
+                return view('encerrada',compact('votacao'));
+
+            }
+
 
         }
 
@@ -186,6 +195,9 @@ class VotacaoController extends Controller
      */
     public function edit($id)
     {
+        $votacao = Votacao::find($id);
+
+        return view('cadastros.votacao.edit',compact('votacao'));
 
     }
 
@@ -198,7 +210,14 @@ class VotacaoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $votacao = Votacao::find($id);
+
+        $votacao->inicio = $request->inicio;
+        $votacao->fim = $request->fim;
+        $votacao->titulo = $request->titulo;
+        $votacao->save();
+
+        return redirect()->route('Votacao.index')->with('status', 'Votação Editada com sucesso');
     }
 
     /**
@@ -219,6 +238,7 @@ class VotacaoController extends Controller
         //FUNCIONARIO X SE JA VOTOU
         $arrayComErros = [];
         $votacao = Votacao::where('titulo_slug',$request->votacao)->first();
+        $funcionario = Funcionarios::where('matricula',$request->matricula)->where('votacao_id',$votacao->id)->first();
 
         //FUNCIONÁRIO NÃO ESTA VINCULADO A VOTACAO
         if(!Funcionarios::where('matricula',$request->matricula)->where('votacao_id',$votacao->id)->first()){
@@ -234,7 +254,8 @@ class VotacaoController extends Controller
 
         }
         //VALIDA SE JA VOTOU
-        if(Votos::where('funcionario_id',$request->matricula)->where('votacao_id',$votacao->id)->first() && empty($arrayComErros)){
+
+        if(Votos::where('funcionario_id',$funcionario->id)->where('votacao_id',$votacao->id)->first() && empty($arrayComErros)){
 
             array_push($arrayComErros,['FuncionarioXSenha' =>'Matricula com Voto já realizado.']);
 

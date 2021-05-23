@@ -20,6 +20,7 @@
                                 <tr>
                                     <th>Matricula</th>
                                     <th>Nome</th>
+                                    <th>Votação</th>
                                     <th>Ação</th>
                                 </tr>
                                 </thead>
@@ -28,6 +29,10 @@
                                     <tr>
                                         <td>{{$funcionario->matricula}}</td>
                                         <td>{{$funcionario->nome}}</td>
+                                        <td>{{$funcionario->votacao->titulo}}</td>
+                                        <td>
+                                            <a class="btn btn-danger btn-sm" href="{{route('Funcionarios.edit',$funcionario)}}">Editar</a>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>

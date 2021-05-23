@@ -68,7 +68,10 @@ class FuncionariosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $funcionario = Funcionarios::find($id);
+        $votacoes  = Votacao::all();
+
+        return view('cadastros.funcionarios.edit',compact('funcionario','votacoes'));
     }
 
     /**
@@ -80,7 +83,18 @@ class FuncionariosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+         $funcionario = Funcionarios::find($id);
+
+        $funcionario->nome = $request->nome;
+        $funcionario->senha = $request->cpf;
+        $funcionario->votacao_id = $request->votacao;
+        $funcionario->matricula = $request->matricula;
+
+        $funcionario->save();
+
+        return redirect()->route('Funcionarios.index')->with('status', 'Funcionário Editado com sucesso');
+
     }
 
     /**

@@ -97,6 +97,14 @@ class VotacaoController extends Controller
     }
 
     /**
+     * Resultado da votacao com os Numero de votantes.
+     *
+     * @param $name
+     */
+    public function votacaoResultado($name){
+
+    }
+    /**
      * Site da Votação
      *
      * @param $name
@@ -168,7 +176,8 @@ class VotacaoController extends Controller
             'titulo' => $request->titulo,
             'inicio' => $request->inicio,
             'fim'    => $request->fim,
-            'titulo_slug' => Str::slug($request->titulo)
+            'titulo_slug' => Str::slug($request->titulo),
+            'quantidade_ganhadores' => $request->quantidade_ganhadores
         ]);
 
 
@@ -215,6 +224,7 @@ class VotacaoController extends Controller
         $votacao->inicio = $request->inicio;
         $votacao->fim = $request->fim;
         $votacao->titulo = $request->titulo;
+        $votacao->quantidade_ganhadoresa = $request->quantidade_ganhadoresa;
         $votacao->save();
 
         return redirect()->route('Votacao.index')->with('status', 'Votação Editada com sucesso');

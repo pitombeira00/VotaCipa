@@ -20,6 +20,10 @@
                                <input type="text" name="titulo" class="form-control" id="formGroupExampleInput2" placeholder="Digite o Titulo da Votação" required>
                            </div>
                            <div class="mb-3">
+                               <label for="formGroupExampleInput2" class="form-label">Quantidade de Ganhadores</label>
+                               <input type="number"  name="quantidade_ganhadores" class="form-control" id="formGroupExampleInput2" placeholder="Digite a quantidade de Ganhadores" required>
+                           </div>
+                           <div class="mb-3">
                                <label for="inivotacao" class="form-label">Inicio da Votação</label>
                                <input type="datetime-local" name="inicio" class="form-control" id="inivotacao" required>
                            </div>

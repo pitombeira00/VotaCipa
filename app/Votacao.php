@@ -12,7 +12,7 @@ class Votacao extends Model
      * @var array
      */
     protected $fillable = [
-        'titulo','inicio','fim', 'titulo_slug'
+        'titulo','inicio','fim', 'titulo_slug','quantidade_ganhadores'
     ];
     protected $table = 'votacao';
 

@@ -38,11 +38,11 @@
 
 
                         <div class="container">
-                            <div class="row">
+                            <div class="row col-sm-12">
                                 <p>Bem vindo a votação {{$votacao->titulo}}.
                                 Informe sua matrícula, sua senha e escolha seu candidato.</p>
 
-                                <form method="POST" action="{{route('votar.salvar')}}">
+                                <form id="formu" action="{{route('votar.salvar')}}" method="POST">
                                    @csrf
                                     <input type="hidden" value="{{$votacao->titulo_slug}}" name="votacao">
                                     <div class="mb-2">
@@ -61,12 +61,12 @@
                                             </label>
                                         </div>
                                     @endforeach
-                                    {!! NoCaptcha::display() !!}
+                                    <div class="col-12 ">
+                                        {!! NoCaptcha::display(['data-size' => 'normal']) !!}
 
+                                    </div>
 
-
-
-                                    <button type="submit" class="btn btn-success btn-block m-2">Votar</button>
+                                    <a class="btn btn-success btn-block m-2" onclick="votar()">Votar</a>
                                 </form>
 
                             </div>
@@ -77,3 +77,29 @@
         </div>
     </div>
 @endsection
+
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.11/dist/sweetalert2.all.min.js" ></script>
+
+<script>
+    function votar(){
+        Swal.fire({
+            title: 'Deseja Confirmar?',
+            text: "Deseja confirmar a sua votação!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, Confirmar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $( "#formu" ).submit();
+
+            }
+        })
+
+       // $( "#formu" ).submit();
+    }
+</script>
+@endsection
+

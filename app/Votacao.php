@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Votacao extends Model
 {
@@ -20,6 +21,19 @@ class Votacao extends Model
 
         return $this->hasMany(Candidatos::Class);
 
+    }
+
+    public function candidatosGanhadores(){
+
+        return DB::table('votos')
+                ->join('votacao', 'votacao.id', '=', 'votos.votacao_id')
+                ->join('candidatos', 'candidatos.id', '=', 'votos.candidato_id')
+                ->where('votacao.id',$this->id)
+                ->select(DB::raw('count(*) as votos, candidatos.nome'))
+                ->groupByRaw('candidato_id')
+                ->orderByDesc('votos')
+                ->limit($this->quantidade_ganhadores)
+                ->get();
     }
     public function votos(){
 

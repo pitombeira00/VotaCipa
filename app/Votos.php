@@ -30,4 +30,9 @@ class Votos extends Model
         return $this->hasOne(Funcionarios::class, 'id', 'funcionario_id');
     }
 
+    public function candidato(){
+
+        return $this->hasOne(Candidatos::class, 'id', 'candidato_id');
+    }
+
 }

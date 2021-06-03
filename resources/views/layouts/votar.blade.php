@@ -53,6 +53,7 @@
     </main>
 
     @yield('js')
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js" ></script>
 </div>
 </body>
 </html>

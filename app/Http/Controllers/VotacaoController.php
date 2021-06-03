@@ -39,7 +39,7 @@ class VotacaoController extends Controller
             ->name('barChartTest')
             ->type('bar')
             ->size(['width' => 400, 'height' => 200])
-            ->labels(['Votação Cipa 2021'])
+            ->labels([$id->titulo])
             ->datasets($labels)
             ->options([]);
 
@@ -101,9 +101,59 @@ class VotacaoController extends Controller
      *
      * @param $name
      */
-    public function votacaoResultado($name){
+    public function votacaoResultadoExterno($name){
 
+        $votacao = Votacao::where('titulo_slug',$name)->first();
+        $dataAtual = date('Y-m-s H:m:s');
+
+        if(empty($name) or empty($votacao)){
+            abort(404);
+        }
+
+        if( $votacao->votacaoAtiva()){
+
+            $labels = [];
+
+           // dd($votacao->candidatosGanhadores());
+            foreach ($votacao->candidatosGanhadores() as $candidato){
+
+                $colorR = mt_rand(0,255);
+                $colorG = mt_rand(0,255);
+                $colorB = mt_rand(0,255);
+
+                array_push($labels,[
+                    "label" => $candidato->nome,
+                    'backgroundColor' => ['rgba('.$colorR.', '.$colorG.', '.$colorB.', 0.2)', 'rgba(54, 162, 235, 0.2)'],
+                    'data' => [$candidato->votos,0]
+                ]);
+            }
+            $chartjs = app()->chartjs
+                ->name('barChartTest')
+                ->type('bar')
+                ->size(['width' => 400, 'height' => 200])
+                ->labels([$votacao->titulo])
+                ->datasets($labels)
+                ->options([]);
+
+            return view('resultados.externo', compact('chartjs','votacao'));
+
+
+        }else{
+
+            if($votacao->naoIniciou()){
+
+                return view('naoiniciou',compact('votacao'));
+
+            }else{
+
+                return view('encerrada',compact('votacao'));
+
+            }
+
+
+        }
     }
+
     /**
      * Site da Votação
      *
@@ -224,7 +274,7 @@ class VotacaoController extends Controller
         $votacao->inicio = $request->inicio;
         $votacao->fim = $request->fim;
         $votacao->titulo = $request->titulo;
-        $votacao->quantidade_ganhadoresa = $request->quantidade_ganhadoresa;
+        $votacao->quantidade_ganhadores = $request->quantidade_ganhadores;
         $votacao->save();
 
         return redirect()->route('Votacao.index')->with('status', 'Votação Editada com sucesso');
@@ -255,18 +305,13 @@ class VotacaoController extends Controller
 
             array_push($arrayComErros,['FuncionarioXVotacao' =>'Matricula não é válida para essa votação']);
 
-        }
-
-        //VALIDA SENHA
-        if(!Funcionarios::where('matricula',$request->matricula)->where('senha',$request->senha)->first() && empty($arrayComErros)){
+        }elseif(!Funcionarios::where('matricula',$request->matricula)->where('senha',$request->senha)->first() && empty($arrayComErros)){
+            //VALIDA SENHA
 
             array_push($arrayComErros,['FuncionarioXSenha' =>'Senha informada está errada']);
 
-        }
-        //VALIDA SE JA VOTOU
-
-        if(Votos::where('funcionario_id',$funcionario->id)->where('votacao_id',$votacao->id)->first() && empty($arrayComErros)){
-
+        }elseif(Votos::where('funcionario_id',$funcionario->id)->where('votacao_id',$votacao->id)->first() && empty($arrayComErros)){
+            //VALIDA SE JA VOTOU
             array_push($arrayComErros,['FuncionarioXSenha' =>'Matricula com Voto já realizado.']);
 
         }

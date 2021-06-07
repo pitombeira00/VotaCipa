@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    VOTE CIPA
+                    GESTÃO CIPA
                 </div>
 
                 <div class="links">

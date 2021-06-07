@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\FuncionarioAtivo;
 use App\Rules\Matricula;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -25,7 +26,7 @@ class VotacaoRequest extends FormRequest
     public function rules()
     {
         return [
-            'matricula' => ['required', 'string', new Matricula()],
+            'matricula' => ['required', 'string', new Matricula(), new FuncionarioAtivo()],
             'senha' => ['required','string','size:4'],
             'candidato' => ['required', 'numeric'],
             'g-recaptcha-response' => 'required|captcha'

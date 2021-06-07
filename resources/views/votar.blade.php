@@ -66,7 +66,7 @@
 
                                     </div>
 
-                                    <a class="btn btn-success btn-block m-2" onclick="votar()">Votar</a>
+                                    <a class="btn btn-success btn-block m-2" onclick="votar()">Confirmar</a>
                                 </form>
 
                             </div>

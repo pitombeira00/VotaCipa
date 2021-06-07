@@ -35,4 +35,7 @@ Route::group(['middleware'=>['auth']], function() {
     Route::get('/Resultados/{id}','VotacaoController@resultadoPorVotacao')->name('resultado');
     Route::get('/Resultados/Listagem/{id}','VotacaoController@votacaoPorFuncionario')->name('votacao.funcionarios');
     Route::get('/Resultados/Dashboard/{id}','VotacaoController@votacaoDashboard')->name('votacao.dashboard');
+
+    Route::get('/Funcionarios/Habilitar/{id}','FuncionariosController@habilitar')->name('Funcionarios.habilitar');
+    Route::get('/Funcionarios/Desabilitar/{id}','FuncionariosController@desabilitar')->name('Funcionarios.desabilitar');
 });

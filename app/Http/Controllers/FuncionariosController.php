@@ -105,6 +105,39 @@ class FuncionariosController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $funcionario = Funcionarios::find($id);
+
+        $funcionario->deleted = true;
+
+        $funcionario->save();
+
+        return redirect()->route('Funcionarios.index')->with('status', 'Funcionário Desabilitado com sucesso');
+
+    }
+
+
+    public function habilitar($id){
+
+        $funcionario = Funcionarios::find($id);
+
+        $funcionario->deleted = false;
+
+        $funcionario->save();
+
+        return redirect()->route('Funcionarios.index')->with('status', 'Funcionário Habilltado com sucesso');
+
+    }
+
+    public function desabilitar($id){
+
+        $funcionario = Funcionarios::find($id);
+
+        $funcionario->deleted = true;
+
+        $funcionario->save();
+
+        return redirect()->route('Funcionarios.index')->with('error', 'Funcionário Desabilitado com sucesso');
+
     }
 }

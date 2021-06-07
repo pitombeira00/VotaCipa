@@ -21,7 +21,7 @@ Auth::routes(['register' => false]);
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/Votar/{name}', 'VotacaoController@votacao')->name('votar');
-Route::get('/Resultado/{name}', 'VotacaoController@votacaoResultadoExterno')->name('externo.fresultado');
+Route::get('/Resultado/{name}', 'VotacaoController@votacaoResultadoExterno')->name('externo.resultado');
 Route::post('/Votou/', 'VotacaoController@voto')->name('votar.salvar');
 
 

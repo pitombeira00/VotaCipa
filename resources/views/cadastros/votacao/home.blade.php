@@ -40,6 +40,7 @@
                                         <a class="btn btn-danger btn-sm" href="{{route('Votacao.edit',$voto)}}">Editar</a>
                                         <a class="btn btn-success btn-sm" href="{{route('candidatos.votacao',$voto)}}">Candidatos</a>
                                         <a class="btn btn-info btn-sm" href="{{route('votar',$voto->titulo_slug)}}">Link de Votação</a>
+                                        <a class="btn btn-outline-secondary btn-sm" target="_blank" href="{{route('externo.resultado',$voto->titulo_slug)}}">Resultado Externo</a>
                                         <a class="btn btn-warning btn-sm" href="{{route('votacao.dashboard',$voto)}}">Dashboard</a>
                                     </td>
                                 </tr>

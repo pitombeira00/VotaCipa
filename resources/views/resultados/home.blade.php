@@ -86,6 +86,7 @@
                                 <tr>
                                     <th></th>
                                     <th>Cipeiro</th>
+                                    <th>Votos</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -93,6 +94,7 @@
                                     <tr>
                                         <td>{{$loop->index + 1}}</td>
                                         <td>{{$candidato->nome}}</td>
+                                        <td>{{$candidato->votos}}</td>
                                     </tr>
                                 @endforeach
 

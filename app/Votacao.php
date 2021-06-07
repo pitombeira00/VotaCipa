@@ -41,7 +41,7 @@ class Votacao extends Model
                 ->join('candidatos', 'candidatos.id', '=', 'votos.candidato_id')
                 ->where('votacao.id',$this->id)
                 ->select(DB::raw('count(*) as votos, candidatos.nome'))
-                ->groupByRaw('candidato_id')
+                ->groupByRaw('candidatos.nome')
                 ->orderByDesc('votos')
                 ->limit($this->quantidade_ganhadores)
                 ->get();

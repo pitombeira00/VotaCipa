@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use SebastianBergmann\CodeUnit\FunctionUnit;
 
 class Votacao extends Model
 {
@@ -17,6 +18,16 @@ class Votacao extends Model
     ];
     protected $table = 'votacao';
 
+    public function totalVotos(){
+
+        return $this->hasMany(Votos::Class)->count();
+
+    }
+    public function totalFuncionarios(){
+
+        return $this->hasMany(Funcionarios::Class)->count();
+
+    }
     public function candidatos(){
 
         return $this->hasMany(Candidatos::Class);

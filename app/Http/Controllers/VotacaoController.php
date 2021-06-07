@@ -14,6 +14,31 @@ class VotacaoController extends Controller
 {
 
 
+    public function votacaoDashboard(Votacao $id){
+
+        $labels = [];
+        foreach ($id->candidatosGanhadores() as $candidato){
+
+            $colorR = mt_rand(0,255);
+            $colorG = mt_rand(0,255);
+            $colorB = mt_rand(0,255);
+
+            array_push($labels,[
+                "label" => $candidato->nome,
+                'backgroundColor' => ['rgba('.$colorR.', '.$colorG.', '.$colorB.', 0.2)', 'rgba(54, 162, 235, 0.2)'],
+                'data' => [$candidato->votos,0]
+            ]);
+        }
+        $chartjs = app()->chartjs
+            ->name('barChartTest')
+            ->type('bar')
+            ->size(['width' => 400, 'height' => 200])
+            ->labels([$id->titulo])
+            ->datasets($labels)
+            ->options([]);
+
+        return view('resultados.home',compact('chartjs','id'));
+    }
     /**
      * Gráfico com o andamento da Votação
      *
@@ -43,7 +68,7 @@ class VotacaoController extends Controller
             ->datasets($labels)
             ->options([]);
 
-        return view('resultados.home', compact('chartjs','id'));
+        return view('resultados.grafico', compact('chartjs','id'));
     }
 
     /**
@@ -112,30 +137,7 @@ class VotacaoController extends Controller
 
         if( $votacao->votacaoAtiva()){
 
-            $labels = [];
-
-           // dd($votacao->candidatosGanhadores());
-            foreach ($votacao->candidatosGanhadores() as $candidato){
-
-                $colorR = mt_rand(0,255);
-                $colorG = mt_rand(0,255);
-                $colorB = mt_rand(0,255);
-
-                array_push($labels,[
-                    "label" => $candidato->nome,
-                    'backgroundColor' => ['rgba('.$colorR.', '.$colorG.', '.$colorB.', 0.2)', 'rgba(54, 162, 235, 0.2)'],
-                    'data' => [$candidato->votos,0]
-                ]);
-            }
-            $chartjs = app()->chartjs
-                ->name('barChartTest')
-                ->type('bar')
-                ->size(['width' => 400, 'height' => 200])
-                ->labels([$votacao->titulo])
-                ->datasets($labels)
-                ->options([]);
-
-            return view('resultados.externo', compact('chartjs','votacao'));
+            return view('resultados.externo', compact('votacao'));
 
 
         }else{

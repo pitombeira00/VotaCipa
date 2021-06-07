@@ -12,9 +12,23 @@
                 <div class="card">
                     <div class="card-header">Resultados {{$votacao->titulo}}</div>
                     <div class="card-body">
-                        <div>
-                            {!! $chartjs->render() !!}
-                        </div>
+                        <table class="table ">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>Cipeiro</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach ($votacao->candidatosGanhadores() as $candidato)
+                                <tr>
+                                    <td>{{$loop->index + 1}}</td>
+                                    <td>{{$candidato->nome}}</td>
+                                </tr>
+                            @endforeach
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

@@ -34,4 +34,5 @@ Route::group(['middleware'=>['auth']], function() {
     Route::get('Votacao/Candidatos/Criar/{id}', 'CandidatosController@createPorVotacao')->name('candidatos.incluir');
     Route::get('/Resultados/{id}','VotacaoController@resultadoPorVotacao')->name('resultado');
     Route::get('/Resultados/Listagem/{id}','VotacaoController@votacaoPorFuncionario')->name('votacao.funcionarios');
+    Route::get('/Resultados/Dashboard/{id}','VotacaoController@votacaoDashboard')->name('votacao.dashboard');
 });

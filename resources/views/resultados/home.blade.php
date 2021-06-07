@@ -2,6 +2,10 @@
 
 @section('content')
     <div class="container">
+        <div class="row col-lg-12 mb-3">
+            <a class="btn btn-danger btn-sm" href="{{route('Votacao.index')}}">Retornar</a>
+
+        </div>
         <div class="row">
             <!-- Small boxes (Stat box) -->
             <div class="col-lg-4 col-6">

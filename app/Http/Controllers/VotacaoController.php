@@ -37,6 +37,10 @@ class VotacaoController extends Controller
             ->datasets($labels)
             ->options([]);
 
+        if($id->totalFuncionarios() == 0){
+
+            return redirect()->route('Votacao.index')->with('error', 'Sem Funcionário Vinculado');
+        }
         return view('resultados.home',compact('chartjs','id'));
     }
     /**

@@ -20,8 +20,8 @@
 
                     <div class="card-body">
 
-                            <table class="table ">
-                                <thead>
+                        <table id="tabela01" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
+                        <thead>
                                 <tr>
                                     <th>Status</th>
                                     <th>Matricula</th>
@@ -61,3 +61,16 @@
         </div>
     </div>
 @endsection
+
+@section('js')
+
+    <script>
+        $(document).ready( function () {
+            $('#tabela01').DataTable({"language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese.json"
+                }
+            });
+        } );
+    </script>
+@endsection
+

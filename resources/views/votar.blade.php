@@ -56,7 +56,7 @@
                                         <div class="form-check form-check-inline m-2">
                                             <input class="form-check-input" type="radio" name="candidato" id="{{$candidato->id}}" value="{{$candidato->id}}">
                                             <label class="form-check-label" for="{{$candidato->id}}">
-                                                <img src="{{$candidato->url_foto}}" class="img-thumbnail" style="width:150px; height: 150px" alt="...">
+                                                <img src="{{url($candidato->url_foto)}}" class="img-thumbnail" style="width:150px; height: 150px" alt="...">
                                                 <p class="text-center">{{$candidato->nome}}</p>
                                             </label>
                                         </div>

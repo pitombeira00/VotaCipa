@@ -18,8 +18,7 @@
                     <small>Candidatos</small></div>
 
                     <div class="card-body">
-
-                            <table class="table ">
+                        <table id="tabela01" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
                                 <thead>
                                 <tr>
                                     <th>Nome</th>
@@ -33,7 +32,8 @@
                                     <tr>
                                         <td>{{$candidato->nome}}</td>
                                         <td>{{$candidato->setor}}</td>
-                                        <td>{{$candidato->url_foto}}</td>
+                                        <td><img src="{{url($candidato->url_foto)}}" class="img-thumbnail" style="width:150px; height: 150px" alt="...">
+                                        </td>
                                         <td>
                                             <a class="btn btn-danger btn-sm" href="#!">Excluir</a>
                                             <a class="btn btn-warning btn-sm" href="{{route('Candidatos.edit',$candidato)}}">Editar</a>
@@ -48,4 +48,16 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+
+    <script>
+        $(document).ready( function () {
+            $('#tabela01').DataTable({"language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese.json"
+                }
+            });
+        } );
+    </script>
 @endsection

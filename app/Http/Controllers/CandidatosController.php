@@ -55,7 +55,7 @@ class CandidatosController extends Controller
 
             // Define uma pasta chamada Fotos
             $folder = 'public/Fotos';
-            $folderExternp = '/Fotos';
+            $folderExterno = 'public/storage/Fotos';
 
             // Define um nome para o arquivo baseado no id_candidato
             $name = 'foto_candidato_'.trim($candidato->id);
@@ -71,7 +71,7 @@ class CandidatosController extends Controller
 
 
             //Salvo o Nome do Material no banco.
-            $candidato->url_foto = $folderExternp.'/'.$nameFile;
+            $candidato->url_foto = $folderExterno.'/'.$nameFile;
 
             $candidato->save();
         }

@@ -30,7 +30,6 @@
 
                            <div class="mb-3">
                                <input name="url" type="file" id="exampleInputFile">
-                               <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                            </div>
 
                            <button type="submit" class="btn btn-success btn-block">Confirmar</button>

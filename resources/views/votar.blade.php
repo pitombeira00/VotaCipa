@@ -54,9 +54,9 @@
 
                                     @foreach($votacao->candidatos as $candidato)
                                         <div class="form-check form-check-inline m-2">
-                                            <input class="form-check-input" type="radio" name="candidato" id="{{$candidato->id}}" value="{{$candidato->id}}">
+                                            <input class="form-check-input" type="radio" name="candidato" id="{{$candidato->id}}" value="{{$candidato->id}}" candidato="{{$candidato->nome}}" foto="{{$candidato->url_foto}}">
                                             <label class="form-check-label" for="{{$candidato->id}}">
-                                                <img src="{{url($candidato->url_foto)}}" class="img-thumbnail" style="width:150px; height: 150px" alt="...">
+                                                <img src="{{url($candidato->url_foto)}}" class="img-thumbnail" style="width:150px; height: 150px" alt="{{$candidato->nome}}">
                                                 <p class="text-center">{{$candidato->nome}}</p>
                                             </label>
                                         </div>
@@ -83,20 +83,39 @@
 
 <script>
     function votar(){
-        Swal.fire({
-            title: 'Deseja Confirmar?',
-            text: "Deseja confirmar a sua votação!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sim, Confirmar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $( "#formu" ).submit();
 
-            }
-        })
+        var nomeCandidato = "";
+        var fotoCandidato = "";
+        var selected = $("input[type='radio']:checked");
+        if (selected.length > 0) {
+            nomeCandidato = selected.attr('candidato');
+            fotoCandidato = selected.attr('foto');
+
+            Swal.fire({
+                title: nomeCandidato,
+                text: "Deseja confirmar a sua votação nesse candidato ?",
+                imageUrl: fotoCandidato,
+                imageHeight: 150,
+                imageAlt: nomeCandidato,
+                showCancelButton: true,
+                confirmButtonColor: 'green',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Confirmar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $( "#formu" ).submit();
+
+                }
+            })
+        }else{
+            Swal.fire(
+                'Você não escolheu candidato',
+                'Escolha e faça sua votação',
+                'error'
+            )
+        }
+
+
 
        // $( "#formu" ).submit();
     }

@@ -33,7 +33,7 @@
                             @foreach($votacao as $voto)
                                 <tr>
                                     <td>{{$voto->id}}</td>
-                                    <td>{{$voto->titulo}}</td>
+                                    <td style="text-overflow: ellipsis;width: 12em">{{$voto->titulo}}</td>
                                     <td>{{ \Carbon\Carbon::parse($voto->inicio )->format('d/m/Y - H:i:s')}}</td>
                                     <td>{{ \Carbon\Carbon::parse($voto->fim )->format('d/m/Y - H:i:s')}}</td>
                                     <td>

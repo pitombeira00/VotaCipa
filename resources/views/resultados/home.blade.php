@@ -77,10 +77,10 @@
                     <div class="tab-content p-0">
                         <!-- Morris chart - Sales -->
                         <div class="chart tab-pane active" id="revenue-chart"
-                             style="position: relative; height: 300px;">
+                             style="position: relative;">
                             {!! $chartjs->render() !!}
                         </div>
-                        <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
+                        <div class="chart tab-pane" id="sales-chart" style="position: relative">
                             <table class="table ">
                                 <thead>
                                 <tr>

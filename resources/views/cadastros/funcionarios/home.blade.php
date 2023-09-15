@@ -1,6 +1,12 @@
 @extends('layouts.login')
 
 @section('content')
+    <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Página inicial</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Funcionários</li>
+    </ol>
+    </nav>
     <div class="container">
         @if (session('status'))
             <div class="alert alert-success" role="alert">
@@ -12,11 +18,11 @@
                 {{ session('error') }}
             </div>
         @endif
-        <a class="btn btn-success mb-3" href="{{ route('Funcionarios.create') }}">Inserir</a>
+        <h1> Funcionários </h1>
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">{{ __('Funcionários') }}</div>
+                    <div class="card-header"><a class="btn btn-success mb-3" href="{{ route('Funcionarios.create') }}">Inserir</a></div>
 
                     <div class="card-body">
 

@@ -5,7 +5,6 @@ return [
     /*
     |--------------------------------------------------------------------------
     | Title
-    |--------------------------------------------------------------------------
     |
     | Here you can change the default title of your admin panel.
     |
@@ -226,7 +225,7 @@ return [
     'menu' => [
         ['header' => 'CADASTROS'],
         [
-            'text' => 'Votação',
+            'text' => 'Eleição',
             'url'  => 'Votacao',
             'icon' => 'fas fa-fw fa-users',
         ],

@@ -17,7 +17,7 @@ services:
       - ./:/var/www
       - ./.docker/php/local.ini:/usr/local/etc/php/8.1
     networks:
-      - api-app_default
+      - api-votecipa
   #Nginx Service
   webserver:
     image: nginx:stable-alpine
@@ -31,7 +31,7 @@ services:
       - ./:/var/www
       - ./.docker/nginx/conf.d/:/etc/nginx/conf.d/
     networks:
-      - api-app_default
+      - api-votecipa
   #MySQL Service
   db:
     image: mariadb:10.5.8
@@ -46,8 +46,8 @@ services:
       - ../cms-message-center/.docker/banco:/var/lib/mysql
       - ../cms-message-center/.docker/mysql/my.cnf:/etc/mysql/mycnf
     networks:
-      - api-app_default
+      - api-votecipa
 #Networks
 networks:
-  api-app_default:
+ api-votecipa:
     external: true

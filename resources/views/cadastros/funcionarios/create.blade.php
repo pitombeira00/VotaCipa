@@ -1,6 +1,19 @@
 @extends('layouts.login')
 
 @section('content')
+<style>
+  .container{
+     margin: 0 auto;
+  }
+
+</style>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Página inicial</a></li>
+            <li class="breadcrumb-item"><a href="#">Funcionários</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Inserir</li>
+        </ol>
+    </nav>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
@@ -38,7 +51,8 @@
                            </div>
 
 
-                           <button type="submit" class="btn btn-success btn-block">Confirmar</button>
+                           <button type="submit" class="btn btn-success mb-3">Confirmar</button>
+                           <a class="btn btn-danger mb-3" href="{{ route('Funcionarios.index') }}">Cancelar</a>
                        </form>
                     </div>
                 </div>

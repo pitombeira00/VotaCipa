@@ -1,6 +1,11 @@
 @extends('layouts.login')
 
 @section('content')
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">Página inicial</li>
+  </ol>
+</nav>
 <div class="container">
     <div class="row">
         <!-- Small boxes (Stat box) -->

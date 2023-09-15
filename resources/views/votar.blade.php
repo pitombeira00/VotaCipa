@@ -18,6 +18,11 @@
         border-color: #28a745;
         box-shadow: 2px 5px 5px gray;
     }
+    
+    .formulario{
+        margin-top: 1fr;
+        display: block;
+    }
 </style>
 
 @endsection
@@ -40,17 +45,20 @@
                         <div class="container">
                             <div class="row col-sm-12">
                                 <p>Bem vindo a votação {{$votacao->titulo}}.
-                                Informe sua matrícula, sua senha e escolha seu candidato.</p>
-
-                                <form id="formu" action="{{route('votar.salvar')}}" method="POST">
-                                   @csrf
-                                    <input type="hidden" value="{{$votacao->titulo_slug}}" name="votacao">
-                                    <div class="mb-2">
-                                        <input type="text" name="matricula" class="form-control"  placeholder="Digite a sua Matricula" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <input type="password" name="senha" class="form-control"  placeholder="Digite a sua Senha" required>
-                                    </div>
+                                Informe sua matrícula, sua senha e escolha seu candidato.</p><br>
+                            </div>
+                                
+                                <div class= formulario>
+                                    <form id="formu" action="{{route('votar.salvar')}}" method="POST">
+                                    @csrf
+                                        <input type="hidden" value="{{$votacao->titulo_slug}}" name="votacao">
+                                        <div class="mb-2">
+                                            <input type="text" name="matricula" class="form-control"  placeholder="Digite a sua Matricula" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <input type="password" name="senha" class="form-control"  placeholder="Digite a sua Senha" required>
+                                        </div>
+                                </div>
 
                                     @foreach($votacao->candidatos as $candidato)
                                         <div class="form-check form-check-inline m-2">
@@ -68,8 +76,6 @@
 
                                     <a class="btn btn-success btn-block m-2" onclick="votar()">Confirmar</a>
                                 </form>
-
-                            </div>
                         </div>
                     </div>
                 </div>

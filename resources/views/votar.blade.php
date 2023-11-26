@@ -46,26 +46,29 @@
                                    @csrf
                                     <input type="hidden" value="{{$votacao->titulo_slug}}" name="votacao">
                                     <div class="mb-2">
-                                        <input type="text" name="matricula" class="form-control"  placeholder="Digite a sua Matricula" required>
+                                        <input type="text" name="matricula" class="form-control"
+                                               placeholder="Digite a sua Matricula" required>
                                     </div>
                                     <div class="mb-3">
-                                        <input type="password" name="senha" class="form-control"  placeholder="Digite a sua Senha" required>
+                                        <input type="password" name="senha" class="form-control"
+                                               placeholder="Digite a sua Senha" required>
                                     </div>
 
                                     @foreach($votacao->candidatos as $candidato)
                                         <div class="form-check form-check-inline m-2">
-                                            <input class="form-check-input" type="radio" name="candidato" id="{{$candidato->id}}" value="{{$candidato->id}}" candidato="{{$candidato->nome}}" foto="{{$candidato->url_foto}}">
+                                            <input class="form-check-input" type="radio" name="candidato"
+                                                   id="{{$candidato->id}}" value="{{$candidato->id}}"
+                                                   candidato="{{$candidato->nome}}" foto="{{$candidato->url_foto}}">
                                             <label class="form-check-label" for="{{$candidato->id}}">
-                                                <img src="{{url($candidato->url_foto)}}" class="img-thumbnail" style="width:150px; height: 150px" alt="{{$candidato->nome}}">
+                                                <img src="{{url($candidato->url_foto)}}" class="img-thumbnail"
+                                                     style="width:150px; height: 150px" alt="{{$candidato->nome}}">
                                                 <p class="text-center">{{$candidato->nome}}</p>
                                             </label>
                                         </div>
                                     @endforeach
                                     <div class="col-12 ">
                                         {!! NoCaptcha::display(['data-size' => 'normal']) !!}
-
                                     </div>
-
                                     <a class="btn btn-success btn-block m-2" onclick="votar()">Confirmar</a>
                                 </form>
 

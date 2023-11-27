@@ -118,9 +118,6 @@
             )
         }
 
-
-
-       // $( "#formu" ).submit();
     }
 </script>
 @endsection
